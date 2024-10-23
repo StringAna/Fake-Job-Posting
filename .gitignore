@@ -8,6 +8,9 @@
 !*.py
 !*.md
 !*.csv
+!*.png
+!*.jpg
+!*.jpeg
 # Don't ignore directories, so we can recurse into them
 !*/
 # Ensure to include files in subdirectories
@@ -17,3 +20,6 @@
 !**/*.py
 !**/*.md
 !**/*.csv
+!**/*.png
+!**/*.jpg
+!**/*.jpeg
