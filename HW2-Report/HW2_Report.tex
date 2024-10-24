@@ -10,6 +10,7 @@
 \usepackage{booktabs}
 \usepackage{listings}
 \usepackage{float}
+\usepackage{subfigure}
 \usepackage{amsmath} % Add the necessary package for the control sequence
 \usepackage{setspace} % Add the necessary package for adjusting line spacing
 \usepackage{hyperref}
@@ -61,8 +62,33 @@
     \item \textbf{\underline{Data Preparation}} 
     \begin{itemize}
       \item \textit{Label Encoding and Filtering Invalid Data}: The target column fraudulent was cast to integer type to represent legitimate (0) and fake (1) job postings. Any records with invalid values were filtered out.
-      \item \textit{Handling Missing Values}:
+      \item \textit{Handling Missing Values}:We identified missing values by calculating percentage of null or NaN values across columns and dropped those with more than 1\% null values to reduce noise.
+      \item \textit{Text Cleaning}: The job descriptions were cleaned by removing special characters, converting text to lowercase, and removing stop words to ensure uniformity.
+      \item \textit{Balancing the Dataset}:To address class imbalance, we undersampled the majority class (legitimate postings) to match the minority class (fake postings), ensuring balanced data for model training. We used sampleBy function in PySpark to match the number of legitimate postings to the number of fraudulent postings. Balancing the dataset removes the risk of bias towards majority class during model training.
     \end{itemize}
+    Here are some statistics of the dataset after cleaning:
+    \begin{figure}[H]
+      \centering
+      \subfigure[Class distribution before and after balancing]{
+        \includegraphics[width=0.47\textwidth]{class_distribution.png}
+        \label{fig:class_distribution}
+      }
+      \hspace{0.02\textwidth}
+      \subfigure[The effect of text cleaning by comparing text length distributions before and after cleaning.]{
+          \includegraphics[width=0.47\textwidth]{text_cleaning_effects.png}
+          \label{fig:text-cleaning-effects}
+      }
+      \hspace{0.02\textwidth}
+      \subfigure[\% of missing values for each column]{
+          \includegraphics[width=0.58\textwidth]{missing_values.png}
+          \label{fig:missing-values-plot}
+      }
+      \hspace{0.02\textwidth}      
+      \caption{Data Preparation Statistics}
+      \label{fig:data_statistics_combined}
+  \end{figure}
+  \item \textbf{\underline{Feature Engineering}}\\ 
+  
 \end{enumerate}
 
 \end{document}
